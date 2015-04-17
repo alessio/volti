@@ -106,7 +106,7 @@ class Preferences:
             self.tree = gtk.Builder()
             self.tree.set_translation_domain(APP_NAME)
             self.tree.add_from_file(glade_file)
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
 
         self.version_label = self.tree.get_object("version_label")

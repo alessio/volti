@@ -35,7 +35,7 @@ class BuildLocales(build):
           rc = subprocess.call(['msgfmt', po, '-o', mo])
           if rc != 0:
             raise Warning, "msgfmt returned %d" % rc
-        except Exception, e:
+        except Exception as e:
           print "Building gettext files failed."
           print "%s: %s" % (type(e), str(e))
           sys.exit(1)

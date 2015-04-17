@@ -37,7 +37,7 @@ class PyAlsaAudioControl():
             self.mixerlist=[]
             self.open()
             self._check_version()
-        except Exception, err:
+        except Exception as err:
             log.warn("can't open %s control for card %s, \
                     trying to select first available mixer channel\n" % (
                 self.control, self.get_card_name()))
@@ -46,7 +46,7 @@ class PyAlsaAudioControl():
                 self.main.control = control
                 self.reopen(self.card_index, control)
                 self._check_version()
-            except Exception, err:
+            except Exception as err:
                 log.error("can't open first available control \
                         for card %s\nerror: %s" % (
                     self.get_card_name(), str(err)))
@@ -111,7 +111,7 @@ class PyAlsaAudioControl():
             if not hasattr(self, 'mixer'):
                 return (None, None)
             return self.mixer.polldescriptors()[0]
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
             return (None, None)
 
@@ -167,7 +167,7 @@ class PyAlsaAudioControl():
         """ Returns card name """
         try:
             return alsa.cards()[self.card_index]
-        except IndexError, err:
+        except IndexError as err:
             log.exception(str(err))
 
     def get_mixer_name(self):

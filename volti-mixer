@@ -38,7 +38,7 @@ if os.path.isdir(os.path.join(".","src")) and os.path.isfile(
 
 try:
     from volti.gtk2 import mixer
-except ImportError, err:
+except ImportError as err:
     sys.stderr.write("Can't import mixer module: %s\nExiting\n" % str(err))
     sys.exit(1)
 
