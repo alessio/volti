@@ -27,7 +27,7 @@ class PyAlsaControl():
             self._has_capture()
             self._check_version()
 
-        except Exception, err:
+        except Exception as err:
             log.warn("can't open %s control for card %s, \
                     trying to select first available mixer channel\n" % (
                 self.control, self.get_card_name()))
@@ -37,7 +37,7 @@ class PyAlsaControl():
                 self.reopen(self.card_index, control)
                 self._has_capture()
                 self._check_version()
-            except Exception, err:
+            except Exception as err:
                 log.error("can't open first available control \
                         for card %s\nerror: %s" % (
                     self.get_card_name(), str(err)))
@@ -100,7 +100,7 @@ class PyAlsaControl():
             if not hasattr(self, 'mixer'):
                 return (None, None)
             return self.mixer.poll_fds[0]
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
             return (None, None)
 
@@ -113,7 +113,7 @@ class PyAlsaControl():
             for mixer in self.mixerlist:
                 mixer.set_volume_all(vol, self.capture)
             return True
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
             return False
 
@@ -126,14 +126,14 @@ class PyAlsaControl():
             vol -= min
             volume = int(round(vol * 100/float(range)))
             return volume
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
 
     def has_playback_channel(self):
         try:
             if self.element.has_channel(0):
                 return True
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
         return False
 
@@ -141,7 +141,7 @@ class PyAlsaControl():
         try:
             if self.element.has_channel(0, True):
                 return True
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
         return False
 
@@ -162,7 +162,7 @@ class PyAlsaControl():
                 else:
                     self.set_volume(OLD_VOLUME)
                     MUTED = False
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
 
     def is_muted(self):
@@ -175,7 +175,7 @@ class PyAlsaControl():
             else:
                 if MUTED:
                     return True
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
         return False
 
@@ -183,7 +183,7 @@ class PyAlsaControl():
         """ Returns card name """
         try:
             return alsacard.card_get_name(self.card_index)
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
 
     def get_mixer_name(self):
@@ -192,7 +192,7 @@ class PyAlsaControl():
             if not self.mixerlist:
                 return ''
             return self.mixerlist[0].name
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
 
     def get_cards(self):
@@ -207,7 +207,7 @@ class PyAlsaControl():
                     cards.append(None)
                 else:
                     cards.append(alsacard.card_get_name(card))
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
         return cards
 
@@ -224,6 +224,6 @@ class PyAlsaControl():
                 if m.has_volume():
                     if mix[0] not in mixers:
                         mixers.append(mix[0])
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
         return mixers

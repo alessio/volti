@@ -49,7 +49,7 @@ class XlibEvent(gobject.GObject, threading.Thread):
 
         try:
             XK.load_keysym_group("xf86")
-        except ImportError, err:
+        except ImportError as err:
             log.warn("Xlib backend needs python-xlib 0.15rc1 or higher\n")
             raise ImportError(str(err))
 

@@ -118,7 +118,7 @@ class VolumeTray(Gtk.StatusIcon):
                 from volti.xlibevent import XlibEvent
                 self.keys_events = XlibEvent(self)
                 self.keys_events.start()
-            except Exception, err:
+            except Exception as err:
                 log.exception(str(err))
                 self.keys_events = None
         else:
@@ -136,7 +136,7 @@ class VolumeTray(Gtk.StatusIcon):
             try:
                 from volti.notification import Notification
                 self.notify = Notification(self)
-            except Exception, err:
+            except Exception as err:
                 log.exception(str(err))
                 self.notify = None
 
@@ -289,7 +289,7 @@ class VolumeTray(Gtk.StatusIcon):
             self.set_volume(volume)
             Gdk.threads_leave()
             return True
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
             return False
 
@@ -318,7 +318,7 @@ class VolumeTray(Gtk.StatusIcon):
                 else:
                     cmd = which(mixer)
                 Popen(cmd, shell=False)
-        except Exception, err:
+        except Exception as err:
             log.debug(cmd)
             log.exception(str(err))
 

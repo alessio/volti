@@ -14,8 +14,8 @@ CONFIG_FILE = os.path.join(CONFIG_DIR, "config")
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
 gettext.textdomain(APP_NAME)
 
-import __builtin__
-__builtin__._ = gettext.gettext
+import builtins
+builtins._ = gettext.gettext
 
 try:
     from gi.repository import Gtk

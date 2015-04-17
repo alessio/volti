@@ -19,7 +19,7 @@
 
 import os
 import gettext
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 
 from gi.repository import Gtk
 from gi.repository import GObject
@@ -30,8 +30,8 @@ from volti.defs import *
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
 gettext.textdomain(APP_NAME)
 
-import __builtin__
-__builtin__._ = gettext.gettext
+import builtins
+builtins._ = gettext.gettext
 
 CHANNEL_LEFT  = 0
 CHANNEL_RIGHT = 1

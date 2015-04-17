@@ -18,7 +18,7 @@
 import os
 import gtk
 import pango
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 
 from volti.defs import *
 from volti.utils import log, get_icon_name, get_icon_themes
@@ -57,7 +57,7 @@ class Preferences:
         for section in self.section, "global":
             if not self.cp.has_section(section):
                 self.cp.add_section(section)
-        for key, val in PREFS.items():
+        for key, val in list(PREFS.items()):
             if key in ["control"]:
                 self.cp.set(self.section, key, val)
             else:
@@ -106,7 +106,7 @@ class Preferences:
             self.tree = gtk.Builder()
             self.tree.set_translation_domain(APP_NAME)
             self.tree.add_from_file(glade_file)
-        except Exception, err:
+        except Exception as err:
             log.exception(str(err))
 
         self.version_label = self.tree.get_object("version_label")
